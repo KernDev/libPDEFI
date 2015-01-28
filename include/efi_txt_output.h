@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <wchar.h>
+#include <efi_status.h>
 
 
 #define CH_ATTR_BLACK 0x00
@@ -14,24 +15,24 @@
 #define CH_ATTR_RED 0x04
 #define CH_ATTR_MAGENTA 0x05
 #define CH_ATTR_BROWN 0x06
-#define CH_ATTR_LIGHTGRAY 0x07
+#define CH_ATTR_LGRAY 0x07
 #define CH_ATTR_BRIGHT 0x08
-#define CH_ATTR_DARKGRAY 0x08
-#define CH_ATTR_LIGHTBLUE 0x09
-#define CH_ATTR_LIGHTGREEN 0x0A
-#define CH_ATTR_LIGHTCYAN 0x0B
-#define CH_ATTR_LIGHTRED 0x0C
-#define CH_ATTR_LIGHTMAGENTA 0x0D
+#define CH_ATTR_DGRAY 0x08
+#define CH_ATTR_LBLUE 0x09
+#define CH_ATTR_LGREEN 0x0A
+#define CH_ATTR_LCYAN 0x0B
+#define CH_ATTR_LRED 0x0C
+#define CH_ATTR_LMAGENTA 0x0D
 #define CH_ATTR_YELLOW 0x0E
 #define CH_ATTR_WHITE 0x0F
-#define CH_ATTR_BG_BLACK 0x00
-#define CH_ATTR_BG_BLUE 0x10
-#define CH_ATTR_BG_GREEN 0x20
-#define CH_ATTR_BG_CYAN 0x30
-#define CH_ATTR_BG_RED 0x40
-#define CH_ATTR_BG_MAGENTA 0x50
-#define CH_ATTR_BG_BROWN 0x60
-#define CH_ATTR_BG_LIGHTGRAY 0x70
+#define BG_ATTR_BLACK 0x00
+#define BG_ATTR_BLUE 0x10
+#define BG_ATTR_GREEN 0x20
+#define BG_ATTR_CYAN 0x30
+#define BG_ATTR_RED 0x40
+#define BG_ATTR_MAGENTA 0x50
+#define BG_ATTR_BROWN 0x60
+#define BG_ATTR_LGRAY 0x70
 #define CH_ATTR(fg, bg) ((fg) | ((bg) << 4))
 
 
