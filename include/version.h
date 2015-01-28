@@ -1,0 +1,15 @@
+#ifndef _VERSION_H_
+#define _VERSION_H_
+
+
+#include <string.h>
+
+
+#define PDE_VERSION_MAJOR	0
+#define PDE_VERSION_MINOR	1
+#define PDE_VERSION_STRING	STRING(PDE_VERSION_MAJOR) "." STRING(PDE_VERSION_MINOR)
+
+#define PDE_NAME_STRING		"libPDEFI " PDE_VERSION_STRING
+
+
+#endif
