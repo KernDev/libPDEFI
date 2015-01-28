@@ -17,7 +17,7 @@ void welcome()
 {
 	puts(L"TestBoot.\n\r");
 	puts(L"Built with " PDE_NAME_STRING ".\n\r");
-	puts(L"Released as public domain.\n\r");
+	puts(L"Released as public domain.\n\n\r");
 }
 
 efi_status_t efi_main(void *handle, efi_systab_t *systab)
@@ -30,6 +30,8 @@ efi_status_t efi_main(void *handle, efi_systab_t *systab)
 	clear_con();
 
 	welcome();
+
+	aputs(L"Testing color...\n\r", CH_ATTR(CH_ATTR_WHITE, BG_ATTR_BLACK));
 
 
 	UNFINISHED();
