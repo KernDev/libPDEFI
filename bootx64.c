@@ -17,7 +17,7 @@ void welcome()
 {
 	puts(L"TestBoot.\n\r");
 	puts(L"Built with " PDE_NAME_STRING ".\n\r");
-	puts(L"Copyright (C) 2015, KernDev team.\n\r");
+	puts(L"Released as public domain.\n\r");
 }
 
 efi_status_t efi_main(void *handle, efi_systab_t *systab)
