@@ -2,14 +2,10 @@
 
 char *strchr(char *str, int chr) {
     size_t len = strlen(str);
-    int i;
-    for (i = 0; i < len; i++) if (str[i] == chr) break;
-    return (char*)(str + i);
+    return (char*)memchr(str, chr, len);
 }
 
-char *strchr(const char *str, int chr) {
+const char *strchr(const char *str, int chr) {
     size_t len = strlen(str);
-    int i;
-    for (i = 0; i < len; i++) if (str[i] == chr) break;
-    return (const char*)(str + i);
+    return (const char*)memchr(str, chr, len);
 }
