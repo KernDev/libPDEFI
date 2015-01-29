@@ -1,8 +1,10 @@
 #include <arch.h>
 #include <version.h>
+#include <exception.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <global.h>
+#include <string.h>
 #include <output.h>
 #include <panic.h>
 #include <cpu.h>
@@ -26,13 +28,11 @@ efi_status_t efi_main(void *handle, efi_systab_t *systab)
 	efi_status_t status;
 
 
+	set_tmode(systab->con_out->mode->max_mode);
 	reset_con(true);
 	clear_con();
 
 	welcome();
-
-	aputs(L"Testing color...\n\r", CH_ATTR(CH_ATTR_WHITE, BG_ATTR_BLACK));
-
 
 	UNFINISHED();
 

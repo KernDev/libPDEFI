@@ -36,7 +36,7 @@
 #define CH_ATTR(fg, bg) ((fg) | ((bg) << 4))
 
 
-typedef native_int_t vmode_n_t;
+typedef native_int_t tmode_n_t;
 
 typedef native_int_t col_n_t;
 typedef native_int_t row_n_t;
@@ -63,8 +63,8 @@ typedef struct {
 	efi_status_t (*puts)(void*, char16_t*);
 	efi_status_t (*strcheck)(void*, char16_t*);
 
-	efi_status_t (*query_mode)(void*, vmode_n_t, col_n_t*, row_n_t*);
-	efi_status_t (*set_mode)(void*, vmode_n_t);
+	efi_status_t (*query_mode)(void*, tmode_n_t, col_n_t*, row_n_t*);
+	efi_status_t (*set_mode)(void*, tmode_n_t);
 
 	efi_status_t (*set_attr)(void*, ch_attr_t);
 

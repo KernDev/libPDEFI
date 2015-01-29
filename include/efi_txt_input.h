@@ -18,7 +18,7 @@ typedef struct {
 typedef struct {
 	efi_status_t (*reset)(void*, bool);
 	efi_status_t (*getkey)(void*, efi_key_t*);
-	void *waitkey;
+	void *wait_key;
 } efi_txt_input_proto_t;
 
 

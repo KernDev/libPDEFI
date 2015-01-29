@@ -3,6 +3,7 @@
 
 
 #include <stdint.h>
+#include <efi_tab_hdr.h>
 #include <efi_txt_input.h>
 #include <efi_txt_output.h>
 
@@ -20,16 +21,7 @@
 
 
 typedef struct {
-	uint64_t signature;
-	uint32_t revision;
-	uint32_t hdr_size;
-	uint32_t crc32;
-	uint32_t reserved;
-} efi_systab_hdr_t;
-
-
-typedef struct {
-	efi_systab_hdr_t header;
+	efi_tab_hdr_t header;
 	char16_t *vendor;
 	uint32_t revision;
 
@@ -38,6 +30,9 @@ typedef struct {
 
 	void *con_out_handle;
 	efi_txt_output_proto_t *con_out;
+
+	void *con_err_handle;
+	efi_txt_output_proto_t *con_err;
 } efi_systab_t;
 
 
