@@ -1,7 +1,9 @@
-#include <string.h>
+#include <stdint.h>
 
-char *strcpy(char *dst, char *src) {
-    size_t len = strlen(src);
-    memcpy(dst, src, len);
-    return dst;
+
+char *strcpy(char *dst, char *src)
+{
+	for (size_t i = 0; (dst[i] = src[i]); i++);
+
+	return dst;
 }

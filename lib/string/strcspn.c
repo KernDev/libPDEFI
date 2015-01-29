@@ -1,10 +1,15 @@
 #include <string.h>
 
-size_t strcspn ( const char * str1, const char * str2 ) {
-    size_t span;
-    size_t len = strlen(str2);
-    for (int i = 0; i < len; i++) {
-        span = strchr(str1, str2[i]);
-    }
-    return span;
+
+size_t strcspn(char *str1, char *str2)
+{
+	char *span = 0;
+	for (size_t i = 0; str2[i] != 0; i++)
+	{
+		char *nspan = strchr(str1, str2[i]);
+		if (nspan > span)
+			span = nspan;
+	}
+
+	return (size_t) (span - str1);
 }

@@ -1,11 +1,10 @@
-#include <string.h>
+#include <stdint.h>
 
-char *strchr(char *str, int chr) {
-    size_t len = strlen(str);
-    return (char*)memchr(str, chr, len);
-}
 
-const char *strchr(const char *str, int chr) {
-    size_t len = strlen(str);
-    return (const char*)memchr(str, chr, len);
+char *strchr(char *str, int chr)
+{
+	for (size_t i = 0; str[i] != 0; i++)
+		if (str[i] == (char) chr) return str + i;
+
+	return 0;
 }
