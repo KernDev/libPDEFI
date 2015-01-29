@@ -15,7 +15,7 @@ void throw_exc(uint32_t code)
 	switch (code)
 	{
 		case EXCEPTION_VIDEO_UNSUPPORTED:
-			puts_noex(L"Warning: the video device doesn't support preferable a feature. Output can be incorrect.\n\r");
+			puts_noex(L"Warning: the video device doesn't support preferable feature. Output can be incorrect.\n\r");
 			break;
 		case EXCEPTION_VIDEO_ERROR:
 			puts_noex(L"Error: a critical video device error occured.\n\r"); //Maybe a user won't even see this.
