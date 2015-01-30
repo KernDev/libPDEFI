@@ -11,10 +11,19 @@
 #include <efi.h>
 #include <reset.h>
 #include <input.h>
+#include <cmdline.h>
 
 #ifdef ARCH_X86_64
 #include <port.h>
 #endif
+
+
+cmd_status_t cmdtest()
+{
+	puts(L"Hello, World!\n\r");
+
+	return CMD_SUCCESS;
+}
 
 
 void welcome()
@@ -32,27 +41,12 @@ efi_status_t efi_main(void *handle, efi_systab_t *systab)
 
 	welcome();
 
-	puts(L"Press R to reboot, S to shutdown, M to go to the boot menu or H to halt.\n\r");
-	while (true)
-	{
-		char16_t ch = getch();
-		switch (ch)
-		{
-			case L'R':
-			case L'r':
-				reset(EFI_RESET_WARM, EFI_SUCCESS);
-			case L'S':
-			case L's':
-				reset(EFI_RESET_SHUTDOWN, EFI_SUCCESS);
-			case L'M':
-			case L'm':
-				return EFI_SUCCESS;
-			case L'H':
-			case L'h':
-				puts(L"CPU halted.");
-				halt();
-		}
-	}
+	cmd_t cmds[1];
+	cmds[0].name = L"test";
+	cmds[0].cb = cmdtest;
+	start_cmdline(L"boot: ", 1, cmds);
+
+	UNFINISHED();
 
 
 	//return EFI_SUCCESS;

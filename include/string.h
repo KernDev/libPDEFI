@@ -3,6 +3,7 @@
 
 
 #include <stdint.h>
+#include <wchar.h>
 
 
 #define STRING_HELPER(val) #val
@@ -15,14 +16,17 @@ void *memchr(void *ptr, int value, size_t num);
 void* memmove(void *dst, void *src, size_t size);
 int memcmp(void *a, void *b, size_t size);
 
-char *strcat(char *dst, char *src);
-int strcmp(char *str1, char *str2);
-char *strncat(char *dst, char *src, size_t num);
-char *strchr(char *str, int chr);
-char *strcpy(char *dst, char *src);
-char *strncpy(char *dst, char *src, size_t len);
+char *strcat(char *dst, const char *src);
+int strcmp(const char *str1, const char *str2);
+char *strncat(char *dst, const char *src, size_t num);
+char *strchr(const char *str, int chr);
+char *strcpy(char *dst, const char *src);
+char *strncpy(char *dst, const char *src, size_t len);
 size_t strlen(char *str);
-size_t strcspn(char *str1, char *str2);
+size_t strcspn(const char *str1, const char *str2);
+
+int wcscmp(const char16_t *str1, const char16_t *str2);
+size_t wcslen(const char16_t *wcs);
 
 
 #endif

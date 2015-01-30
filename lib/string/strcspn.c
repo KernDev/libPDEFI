@@ -1,7 +1,7 @@
 #include <string.h>
 
 
-size_t strcspn(char *str1, char *str2)
+size_t strcspn(const char *str1, const char *str2)
 {
 	char *span = 0;
 	for (size_t i = 0; str2[i] != 0; i++)

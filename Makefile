@@ -11,7 +11,7 @@ YASM = yasm
 YASMFLAGS = -f win64
 
 #LD = $(CROSS_PREFIX)-ld
-LDFLAGS = -nostdlib -Wl,-dll -shared -Wl,--subsystem,10 -e efi_main -lgcc
+LDFLAGS = -nostdlib -Wl,-dll -shared -Wl,--subsystem,10 -e efi_main
 
 OBJS_NOARCH = $(patsubst %.c,%.o,$(shell find lib -path lib/arch/ -prune -o -type f -name '*.c'))
 OBJS_ARCH = $(patsubst %.c,%.o,$(shell find lib/arch/$(ARCH) -type f -name '*.c'))

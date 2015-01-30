@@ -30,13 +30,10 @@ void clear_con()
 efi_status_t query_tmode(tmode_n_t tmode_n, col_n_t *col_n, row_n_t *row_n)
 {
 	efi_status_t status = efi_systab->con_out->query_mode(efi_systab->con_out, tmode_n, col_n, row_n);
-	if (status != EFI_SUCCESS)
-	{
-		if (status == EFI_UNSUPPORTED)
-			throw_exc(EXCEPTION_VIDEO_UNSUPPORTED);
-		else if (status == EFI_DEVICE_ERROR)
-			throw_exc(EXCEPTION_VIDEO_ERROR);
-	}
+	if (status == EFI_DEVICE_ERROR)
+		throw_exc(EXCEPTION_VIDEO_ERROR);
+
+	return status;
 }
 
 tmode_n_t find_tmode(col_n_t col_n, row_n_t row_n)
@@ -138,7 +135,7 @@ void set_cur(bool cur)
 	{
 		if (status == EFI_DEVICE_ERROR)
 			throw_exc(EXCEPTION_VIDEO_ERROR);
-		else if (status == EFI_UNSUPPORTED)
-			throw_exc(EXCEPTION_VIDEO_UNSUPPORTED);
+		//else if (status == EFI_UNSUPPORTED)
+		//	throw_exc(EXCEPTION_VIDEO_UNSUPPORTED);
 	}
 }
