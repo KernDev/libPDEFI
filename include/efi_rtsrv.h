@@ -43,7 +43,7 @@ typedef struct {
 
 	efi_status_t (*get_next_high_monotonic_cnt)(uint32_t *cnt);
 
-	void (*reset_sys)(efi_reset_type_t, efi_status_t, native_int_t, void*);
+	void __attribute__((noreturn)) (*reset_sys)(efi_reset_type_t, efi_status_t, native_int_t, void*);
 } efi_rtsrv_t;
 
 

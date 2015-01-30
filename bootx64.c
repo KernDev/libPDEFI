@@ -36,11 +36,28 @@ efi_status_t efi_main(void *handle, efi_systab_t *systab)
 
 	welcome();
 
-	puts(L"Press any key to shutdown.");
-	getch();
+	puts(L"Press R to reboot, S to shutdown, M to go to boot menu or H to halt.\n\r");
+	while (true)
+	{
+		char16_t ch = getch();
+		switch (ch)
+		{
+			case L'R':
+			case L'r':
+				reset(EFI_RESET_WARM, EFI_SUCCESS);
+			case L'S':
+			case L's':
+				reset(EFI_RESET_SHUTDOWN, EFI_SUCCESS);
+			case L'M':
+			case L'm':
+				return EFI_SUCCESS;
+			case L'H':
+			case L'h':
+				puts(L"CPU halted.");
+				halt();
+		}
+	}
 
-	reset(EFI_RESET_SHUTDOWN, EFI_SUCCESS);
 
-
-	return 0;
+	//return EFI_SUCCESS;
 }
