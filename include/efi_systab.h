@@ -3,9 +3,11 @@
 
 
 #include <stdint.h>
+#include <wchar.h>
 #include <efi_tab_hdr.h>
 #include <efi_txt_input.h>
 #include <efi_txt_output.h>
+#include <efi_rtsrv.h>
 
 
 #define EFI_SYSTAB_SIGNATURE 0x5453595320494249
@@ -33,6 +35,8 @@ typedef struct {
 
 	void *con_err_handle;
 	efi_txt_output_proto_t *con_err;
+
+	efi_rtsrv_t *rtsrv;
 } efi_systab_t;
 
 

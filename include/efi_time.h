@@ -21,7 +21,7 @@ typedef struct {
 	uint32_t resolution;
 	uint32_t accuracy;
 	bool     sets_zero;
-} efi_time_capab_t;
+} __attribute__((aligned(4))) efi_time_capab_t;
 
 
 #endif

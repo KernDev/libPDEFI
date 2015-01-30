@@ -9,6 +9,8 @@
 #include <panic.h>
 #include <cpu.h>
 #include <efi.h>
+#include <reset.h>
+#include <input.h>
 
 #ifdef ARCH_X86_64
 #include <port.h>
@@ -34,7 +36,10 @@ efi_status_t efi_main(void *handle, efi_systab_t *systab)
 
 	welcome();
 
-	UNFINISHED();
+	puts(L"Press any key to shutdown.");
+	getch();
+
+	reset(EFI_RESET_SHUTDOWN, EFI_SUCCESS);
 
 
 	return 0;
