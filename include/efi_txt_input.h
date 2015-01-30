@@ -9,6 +9,9 @@
 #include <efi_event.h>
 
 
+#define EFI_RTSRV_SIGNATURE 0x56524553544e5552
+
+
 typedef struct {
 	uint16_t scan_code;
 	char16_t uchar;

@@ -20,6 +20,7 @@
 #define EFI_1_02_SYSTAB_REV ((1<<16) | (02))
 
 #define EFI_SYSTAB_REV EFI_2_20_SYSTAB_REV
+#define EFI_SPECIFICATION_VERSION EFI_SYSTAB_REV
 
 
 typedef struct {

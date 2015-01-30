@@ -26,17 +26,13 @@ void welcome()
 
 efi_status_t efi_main(void *handle, efi_systab_t *systab)
 {
-	PDE_INIT_GLOBAL(handle, systab);
+	pde_init(handle, systab);
 	efi_status_t status;
 
 
-	set_tmode(systab->con_out->mode->max_mode);
-	reset_con(true);
-	clear_con();
-
 	welcome();
 
-	puts(L"Press R to reboot, S to shutdown, M to go to boot menu or H to halt.\n\r");
+	puts(L"Press R to reboot, S to shutdown, M to go to the boot menu or H to halt.\n\r");
 	while (true)
 	{
 		char16_t ch = getch();

@@ -5,7 +5,12 @@
 #include <stdint.h>
 
 
-#define PANIC_UNFINISHED 1
+enum {
+	PANIC_HW_FATAL,
+	PANIC_UNFINISHED,
+	PANIC_BAD_EFI_REV,
+	PANIC_BAD_EFI_SIG
+};
 
 
 #define UNFINISHED() panic(PANIC_UNFINISHED)

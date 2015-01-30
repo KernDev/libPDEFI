@@ -5,7 +5,7 @@
 #include <efi_systab.h>
 
 
-#define PDE_INIT_GLOBAL(nhandle, nsystab) (efi_img_handle = handle, efi_systab = nsystab)
+void pde_init(void *nhandle, efi_systab_t *nsystab);
 
 
 extern void		*efi_img_handle;
