@@ -5,7 +5,7 @@
 #include <efi_systab.h>
 
 
-void pde_init(void *nhandle, efi_systab_t *nsystab);
+void pde_init(void *nhandle, efi_systab_t *nsystab, tmode_n_t tmode);
 
 
 extern void		*efi_img_handle;

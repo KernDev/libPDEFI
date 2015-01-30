@@ -8,7 +8,8 @@
 
 enum {
 	CMD_SUCCESS,
-	CMD_FAILURE
+	CMD_FAILURE,
+	CMD_EXIT
 };
 
 

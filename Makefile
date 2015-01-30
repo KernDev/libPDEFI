@@ -36,7 +36,7 @@ test: updatefat run
 run:
 	qemu-system-x86_64 -cpu Haswell -m 512 -monitor stdio -L OVMF -bios OVMF.fd -usbdevice disk::fat.img
 
-updatefat: fat.img
+updatefat: fat.img BOOTX64.EFI
 	mcopy -i fat.img BOOTX64.EFI ::/EFI/BOOT
 
 fat.img:

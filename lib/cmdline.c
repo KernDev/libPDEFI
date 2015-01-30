@@ -26,8 +26,21 @@ void start_cmdline(char16_t *prompt, uint32_t cmdc, cmd_t *cmds)
 		{
 			if (!wcscmp(input, cmds[i].name))
 			{
-				if (cmds[i].cb() != CMD_SUCCESS)
-					puts(L"Error: unsuccessful command.\n\r");
+				cmd_status_t cmd_status = cmds[i].cb();
+				switch (cmd_status)
+				{
+					case CMD_SUCCESS:
+						break;
+					case CMD_FAILURE:
+						puts(L"Error: the command executed unsuccessfully.\n\r");
+						break;
+					case CMD_EXIT:
+						puts(L"Bye!\n\r");
+						return;
+					default:
+						puts(L"Warning: the command returned an undefined status code.\n\r");
+				}
+
 				break;
 			}
 		}

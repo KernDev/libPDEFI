@@ -3,7 +3,7 @@
 #include <panic.h>
 
 
-void pde_init(void *nhandle, efi_systab_t *nsystab)
+void pde_init(void *nhandle, efi_systab_t *nsystab, tmode_n_t tmode)
 {
 	// Init global variables.
 	efi_img_handle = nhandle;
@@ -17,7 +17,7 @@ void pde_init(void *nhandle, efi_systab_t *nsystab)
 		panic(PANIC_BAD_EFI_SIG);
 
 	// Initialize the console.
-	set_tmode(0);
+	set_tmode(tmode);
 	reset_con(true);
 	set_ch_attr(CH_ATTR(CH_ATTR_LGRAY, BG_ATTR_BLACK));
 	clear_con();
