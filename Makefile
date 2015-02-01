@@ -5,7 +5,7 @@ CROSS_PREFIX = x86_64-w64-mingw32-
 STDC_VERSION = gnu11
 
 CC = $(CROSS_PREFIX)gcc
-CFLAGS = -ffreestanding -c -nostdinc -Iinclude -Iinclude/arch/$(ARCH) -masm=intel -std=$(STDC_VERSION)
+CFLAGS = -ffreestanding -c -nostdinc -Iinclude -Iinclude/arch/$(ARCH) -masm=intel -std=$(STDC_VERSION) -fno-stack-check -fno-stack-protector -mno-stack-arg-probe
 
 YASM = yasm
 YASMFLAGS = -f win64
@@ -34,7 +34,7 @@ BOOTX64.EFI: bootx64.o $(OBJS_NOARCH) $(OBJS_ARCH) $(AOBJS) include/*
 test: updatefat run
 
 run:
-	qemu-system-x86_64 -cpu Haswell -m 512 -monitor stdio -L OVMF -bios OVMF.fd -usbdevice disk::fat.img
+	qemu-system-x86_64 -cpu Haswell -m 128 -monitor stdio -L OVMF -bios OVMF.fd -usbdevice disk::fat.img
 
 updatefat: fat.img BOOTX64.EFI
 	mcopy -i fat.img BOOTX64.EFI ::/EFI/BOOT

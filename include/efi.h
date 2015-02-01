@@ -5,6 +5,7 @@
 #include <efi_status.h>
 #include <efi_systab.h>
 #include <efi_event.h>
+#include <efi_mem.h>
 
 
 #endif

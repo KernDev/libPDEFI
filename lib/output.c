@@ -113,6 +113,24 @@ void aputs(char16_t *str, ch_attr_t attr)
 	set_ch_attr(old_attr);
 }
 
+void putc(char16_t ch)
+{
+	char16_t ch_str[2];
+	ch_str[0] = ch;
+	ch_str[1] = 0;
+
+	puts(ch_str);
+}
+
+void aputc(char16_t ch, ch_attr_t attr)
+{
+	char16_t ch_str[2];
+	ch_str[0] = ch;
+	ch_str[1] = 0;
+
+	aputs(ch_str, attr);
+}
+
 
 void set_cur_pos(col_n_t col_n, row_n_t row_n)
 {

@@ -16,6 +16,8 @@ void set_tmode(tmode_n_t tmode_n);
 
 void puts(char16_t *str);
 void aputs(char16_t *str, ch_attr_t attr);
+void putc(char16_t ch);
+void aputc(char16_t ch, ch_attr_t attr);
 
 void set_ch_attr(ch_attr_t attr);
 ch_attr_t get_ch_attr();

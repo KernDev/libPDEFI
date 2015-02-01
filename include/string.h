@@ -28,5 +28,7 @@ size_t strcspn(const char *str1, const char *str2);
 int wcscmp(const char16_t *str1, const char16_t *str2);
 size_t wcslen(const char16_t *wcs);
 
+char16_t *ulltowcs(uint64_t val, uint8_t base);
+
 
 #endif

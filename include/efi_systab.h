@@ -8,6 +8,7 @@
 #include <efi_txt_input.h>
 #include <efi_txt_output.h>
 #include <efi_rtsrv.h>
+#include <efi_bsrv.h>
 
 
 #define EFI_SYSTAB_SIGNATURE 0x5453595320494249
@@ -38,6 +39,7 @@ typedef struct {
 	efi_txt_output_proto_t *con_err;
 
 	efi_rtsrv_t *rtsrv;
+	efi_bsrv_t *bsrv;
 } efi_systab_t;
 
 

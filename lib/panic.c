@@ -22,6 +22,15 @@ void panic(uint16_t code)
 		case PANIC_BAD_EFI_SIG:
 			puts(L"invalid signature.\n\r");
 			break;
+		case PANIC_ALLOC_FAILED:
+			puts(L"memory allocation failed.\n\r");
+			break;
+		case PANIC_FREE_FAILED:
+			puts(L"object free'd wasn't allocated, possible memory corruption.\n\r");
+			break;
+		case PANIC_NO_MMAP:
+			puts(L"no memory map.\n\r");
+			break;
 		default:
 			puts(L"undefined error.\n\r");
 	}

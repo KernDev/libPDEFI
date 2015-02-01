@@ -18,11 +18,37 @@
 #define EFI_OPTIONAL_PTR 0x00000001
 
 
+#define CAPSULE_FLAGS_PERSIST_ACROSS_RESET	0x00010000
+#define CAPSULE_FLAGS_POPULATE_SYSTEM_TABLE	0x00020000
+#define CAPSULE_FLAGS_INITIATE_RESET		0x00040000
+
+
 typedef enum {
 	EFI_RESET_COLD,
 	EFI_RESET_WARM,
 	EFI_RESET_SHUTDOWN
 } efi_reset_type_t;
+
+
+typedef struct {
+	efi_guid_t guid;
+	uint32_t hdr_sz;
+	uint32_t flags;
+	uint32_t caps_sz;
+} efi_caps_hdr_t;
+
+
+typedef struct {
+	native_int_t addr;
+	uint32_t len;
+	uint32_t *reserved;
+} scatter_gather_elem_t;
+
+typedef struct {
+	uint32_t elem_n;
+	uint32_t *reserved;
+	scatter_gather_elem_t elems[];
+} scatter_gather_list_t;
 
 
 typedef struct {
@@ -44,6 +70,10 @@ typedef struct {
 	efi_status_t (*get_next_high_monotonic_cnt)(uint32_t *cnt);
 
 	void __attribute__((noreturn)) (*reset_sys)(efi_reset_type_t, efi_status_t, native_int_t, void*);
+
+	efi_status_t (*update_caps)(efi_caps_hdr_t**, native_int_t, native_int_t, scatter_gather_list_t*);
+	efi_status_t (*query_caps)(efi_caps_hdr_t**, native_int_t, uint64_t*, efi_reset_type_t*);
+	efi_status_t (*query_var_info)(uint32_t attr, uint64_t*, uint64_t*, uint64_t*);
 } efi_rtsrv_t;
 
 
