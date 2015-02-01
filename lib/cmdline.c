@@ -3,6 +3,7 @@
 #include <input.h>
 #include <output.h>
 #include <global.h>
+#include <mm.h>
 
 
 void start_cmdline(char16_t *prompt, uint32_t cmdc, cmd_t *cmds)
@@ -13,13 +14,11 @@ void start_cmdline(char16_t *prompt, uint32_t cmdc, cmd_t *cmds)
 	if (status != EFI_SUCCESS)
 		return;
 
-	char16_t input[50];
-
 	while (1)
 	{
 		puts(prompt);
 
-		getsn(input, 49);
+		char16_t *input = dgets();
 
 		uint32_t i;
 		for (i = 0; i < cmdc; i++)
@@ -44,6 +43,8 @@ void start_cmdline(char16_t *prompt, uint32_t cmdc, cmd_t *cmds)
 				break;
 			}
 		}
+
+		free(input);
 
 		if (i == cmdc)
 			puts(L"Error: unknown command.\n\r");

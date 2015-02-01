@@ -31,9 +31,7 @@ efi_status_t efi_main(void *handle, efi_systab_t *systab)
 	pde_init(handle, systab, systab->con_out->mode->max_mode);
 	efi_status_t status;
 
-
 	welcome();
-
 
 	UNFINISHED();
 

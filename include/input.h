@@ -10,7 +10,7 @@
 efi_key_t getk();
 char16_t getch();
 
-void getsn(char16_t *str, size_t len);
+char16_t *dgets();
 
 
 #endif
