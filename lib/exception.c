@@ -30,6 +30,10 @@ void throw_exc(uint32_t code)
 		case EXCEPTION_KBD_ERROR:
 			puts_noex(L"Error: couldn't get keyboard input.\n\r");
 			break;
+		case EXCEPTION_NO_GRAPHICS_PROTO:
+			efi_graphics = 0;
+			puts_noex(L"Warning: couldn't locate the EFI graphics protocol. No graphics mode will be available.\n\r");
+			break;
 		default:
 			puts_noex(L"Warning: an undefined exception was thrown.\n\r");
 	}

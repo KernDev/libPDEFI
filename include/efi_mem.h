@@ -37,6 +37,7 @@ typedef enum {
 
 typedef struct {
 	uint32_t type;
+	uint32_t pad;
 	native_int_t pstart;
 	native_int_t vstart;
 	uint64_t pnum;

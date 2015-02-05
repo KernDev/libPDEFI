@@ -13,6 +13,9 @@
 #include <input.h>
 #include <cmdline.h>
 #include <mm.h>
+#include <timer.h>
+#include <hexdump.h>
+#include <graphics.h>
 
 #ifdef ARCH_X86_64
 #include <port.h>
@@ -26,15 +29,16 @@ void welcome()
 	puts(L"Released as public domain.\n\n\r");
 }
 
-efi_status_t efi_main(void *handle, efi_systab_t *systab)
+efi_status_t efi_main(void *img_handle, efi_systab_t *systab)
 {
-	pde_init(handle, systab, systab->con_out->mode->max_mode);
+	pde_init(img_handle, systab, systab->con_out->mode->max_mode);
 	efi_status_t status;
 
 	welcome();
 
-	UNFINISHED();
+	// Insert your test code here.
 
+	halt();
 
 	return EFI_SUCCESS;
 }

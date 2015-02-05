@@ -3,14 +3,24 @@
 
 
 #include <stdint.h>
+#include <wchar.h>
 #include <efi_mem.h>
+#include <efi_event.h>
+#include <efi_dev_path.h>
+
+
+#define EFI_OPEN_PROTOCOL_BY_HANDLE_PROTOCOL	0x00000001
+#define EFI_OPEN_PROTOCOL_GET_PROTOCOL		0x00000002
+#define EFI_OPEN_PROTOCOL_TEST_PROTOCOL		0x00000004
+#define EFI_OPEN_PROTOCOL_BY_CHILD_CONTROLLER	0x00000008
+#define EFI_OPEN_PROTOCOL_BY_DRIVER		0x00000010
+#define EFI_OPEN_PROTOCOL_EXCLUSIVE		0x00000020
 
 
 #define TPL_APPLICATION	4
 #define TPL_CALLBACK	8
 #define TPL_NOTIFY	16
 #define TPL_HIGH_LEVEL	31
-
 
 typedef native_int_t efi_tpl_t;
 
@@ -21,6 +31,36 @@ typedef enum {
 	ALLOC_ADDR,
 	MAX_ALLOC_TYPE
 } efi_alloc_type_t;
+
+
+typedef enum {
+	TIMER_CANCEL,
+	TIMER_PERIODIC,
+	TIMER_RELATIVE
+} efi_timer_delay_t;
+
+
+typedef enum {
+	EFI_NATIVE_INTERFACE
+} efi_interface_t;
+
+
+typedef enum {
+  ALL_HANDLES,
+  BY_REGISTER_NOTIFY,
+  BY_PROTOCOL
+} efi_locate_search_t;
+
+
+typedef void (*efi_evt_notify_t)(void*, void*);
+
+
+typedef struct {
+	void *agent_handle;
+	void *controller_handle;
+	uint32_t attr;
+	uint32_t cnt;
+} efi_proto_info_ent_t;
 
 
 typedef struct {
@@ -36,6 +76,53 @@ typedef struct {
 
 	efi_status_t (*alloc_pool)(efi_memory_type_t, native_int_t, void**);
 	efi_status_t (*free_pool)(void*);
+
+	efi_status_t (*create_evt)(uint32_t, efi_tpl_t, efi_evt_notify_t, void*, void**);
+	efi_status_t (*set_timer)(void*, efi_timer_delay_t, uint64_t);
+	efi_status_t (*wait_evt)(native_int_t, void**, native_int_t*);
+	efi_status_t (*sig_evt)(void*);
+	efi_status_t (*close_evt)(void*);
+	efi_status_t (*check_evt)(void*);
+
+	efi_status_t (*install_proto)(void**, efi_guid_t*, efi_interface_t, void*);
+	efi_status_t (*reinstall_proto)(void*, efi_guid_t*, void*, void*);
+	efi_status_t (*uninstall_proto)(void*, efi_guid_t*, void*);
+	efi_status_t (*handle_proto)(void*, efi_guid_t*, void**);
+
+	void *reserved;
+
+	efi_status_t (*reg_proto_notify)(efi_guid_t*, void*, void**);
+
+	efi_status_t (*locate_handle)(efi_locate_search_t, efi_guid_t*, void*, native_int_t*, void**);
+	efi_status_t (*locate_dev_path)(efi_guid_t*, efi_dev_path_proto_t**, void**);
+	efi_status_t (*install_cfg_tab)(efi_guid_t*, void*);
+
+	efi_status_t (*load_img)(bool, void*, efi_dev_path_proto_t*, void*, native_int_t, void**);
+	efi_status_t (*start_img)(void*, native_int_t*, char16_t**);
+
+	efi_status_t (*exit)(void*, efi_status_t, native_int_t, char16_t*);
+
+	void *unknown_unload_img; // TODO: add unload_img here.
+
+	efi_status_t (*exit_bsrv)(void*, native_int_t);
+
+	efi_status_t (*get_next_monotonic_cnt)(uint64_t*);
+
+	efi_status_t (*stall)(native_int_t);
+
+	efi_status_t (*set_watchdog_timer)(native_int_t, uint64_t, native_int_t, char16_t*);
+
+	// TODO: find information about these functions.
+	void *unknown_connect_controller;
+	void *unknown_disconnect_controller;
+
+	efi_status_t (*open_proto)(void*, efi_guid_t*, void**, void*, void*, uint32_t);
+	efi_status_t (*close_proto)(void*, efi_guid_t*, void*, void*);
+	efi_status_t (*open_proto_info)(void*, efi_guid_t*, efi_proto_info_ent_t**, native_int_t*);
+	void *unknown_proto_per_handle;
+
+	void *unknown_locate_handle_buffer;
+	efi_status_t (*locate_proto)(efi_guid_t*, void*, void**);
 } efi_bsrv_t;
 
 

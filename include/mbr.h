@@ -37,7 +37,7 @@ enum {
 	MBR_WIN95_EXT,		// Windows 95 extended partition.
 	MBR_MAYBE_OPUS,		// Open Parallel Unisys Server (maybe).
 	MBR_FAT12_HIDDEN,	// Hidden FAT12.
-	// TODO: add these obsolete filesystems: http://www.win.tue.nl/~aeb/partitions/partition_types-1.html.
+	// TODO: maybe add these obsolete filesystems: http://www.win.tue.nl/~aeb/partitions/partition_types-1.html.
 	MBR_MIROS = 0x27,	// MirOS, a BSD flavor.
 	MBR_WIN_RE = 0x27,	// Windows RE hidden partition.
 	MBR_PLAN9 = 0x39,	// Plan 9 (from Bell Labs).

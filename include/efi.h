@@ -6,6 +6,8 @@
 #include <efi_systab.h>
 #include <efi_event.h>
 #include <efi_mem.h>
+#include <efi_graphics.h>
+#include <efi_disk.h>
 
 
 #endif
