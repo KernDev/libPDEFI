@@ -4,6 +4,7 @@
 
 #include <efi_systab.h>
 #include <efi_graphics.h>
+#include <efi_file.h>
 
 
 void pde_init(void *nhandle, efi_systab_t *nsystab, tmode_n_t tmode);

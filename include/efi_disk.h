@@ -4,6 +4,7 @@
 
 #include <stdint.h>
 #include <efi_status.h>
+#include <efi_dev_path.h>
 
 
 #define EFI_DISK_IO_PROTO_GUID {0xCE345171, 0xBA0B, 0x11d2, 0x8e, 0x4F, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}
@@ -38,6 +39,7 @@ typedef struct {
 
 
 typedef struct {
+	efi_dev_path_proto_t header;
 	uint32_t media_id;
 	bool rem_media;
 	bool media_pres;

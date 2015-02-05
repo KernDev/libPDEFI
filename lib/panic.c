@@ -11,30 +11,33 @@ void panic(uint16_t code)
 	switch (code)
 	{
 		case PANIC_HW_FATAL:
-			puts(L"a fatal hardware error occured.\n\r");
+			puts(L"a fatal hardware error occured.");
 			break;
 		case PANIC_UNFINISHED:
-			puts(L"reached unfinished area.\n\r");
+			puts(L"reached unfinished area.");
 			break;
 		case PANIC_BAD_EFI_REV:
-			puts(L"booted by an unsupported version of EFI.\n\r");
+			puts(L"booted by an unsupported version of EFI.");
 			break;
 		case PANIC_BAD_EFI_SIG:
-			puts(L"invalid signature.\n\r");
+			puts(L"invalid signature.");
 			break;
 		case PANIC_ALLOC_FAILED:
-			puts(L"memory allocation failed.\n\r");
+			puts(L"memory allocation failed.");
 			break;
 		case PANIC_FREE_FAILED:
-			puts(L"object free'd wasn't allocated, possible memory corruption.\n\r");
+			puts(L"object free'd wasn't allocated, possible memory corruption.");
 			break;
 		case PANIC_NO_MMAP:
-			puts(L"no memory map.\n\r");
+			puts(L"no memory map.");
+			break;
+		case PANIC_NO_FILESYSTEM:
+			puts(L"no filesystem access.");
 			break;
 		default:
-			puts(L"undefined error.\n\r");
+			puts(L"undefined error.");
 	}
 
-	puts(L"CPU halted.");
+	puts(L"\n\rCPU halted.");
 	halt();
 }

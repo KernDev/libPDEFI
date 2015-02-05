@@ -8,6 +8,7 @@
 #include <efi_mem.h>
 #include <efi_graphics.h>
 #include <efi_disk.h>
+#include <efi_file.h>
 
 
 #endif

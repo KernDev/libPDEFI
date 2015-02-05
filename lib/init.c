@@ -29,8 +29,8 @@ void pde_init(void *nhandle, efi_systab_t *nsystab, tmode_n_t tmode)
 	// Initialize the input device.
 	efi_systab->con_in->reset(efi_systab->con_in, true);
 
-	// Install graphics.
-	efi_guid_t efi_graphics_proto_guid[] = EFI_GRAPHICS_PROTO_GUID;
-	if (efi_systab->bsrv->locate_proto(efi_graphics_proto_guid, 0, (void**) &efi_graphics) != EFI_SUCCESS)
+	// Install the graphics.
+	efi_guid_t efi_graphics_proto_guid = EFI_GRAPHICS_PROTO_GUID;
+	if (efi_systab->bsrv->locate_proto(&efi_graphics_proto_guid, 0, (void**) &efi_graphics) != EFI_SUCCESS)
 		throw_exc(EXCEPTION_NO_GRAPHICS_PROTO);
 }

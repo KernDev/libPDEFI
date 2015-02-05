@@ -36,7 +36,6 @@
 #define EFI_END_OF_MEDIA	(EFI_ERROR | 28)
 #define EFI_END_OF_FILE		(EFI_ERROR | 31)
 
-// TODO: check if warning codes are right.
 #define EFI_WARN_UNKNOWN_GLYPH	1
 #define EFI_WARN_DELETE_FAILURE	2
 #define EFI_WARN_WRITE_FAILURE	3
