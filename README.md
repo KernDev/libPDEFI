@@ -9,8 +9,8 @@ The library is in active development.
 
 # Roadmap
 - Text output [done].
-- Keyboard input [wip].
-- Disk I/O.
+- Keyboard input [done].
+- Disk I/O [wip].
 
 # Compilation instructions
 Just 'make' it.
