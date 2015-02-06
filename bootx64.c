@@ -19,6 +19,7 @@
 
 #ifdef ARCH_X86_64
 #include <port.h>
+#include <ata_pio.h>
 #endif
 
 

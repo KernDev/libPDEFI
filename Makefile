@@ -13,7 +13,7 @@ YASMFLAGS = -f win64
 #LD = $(CROSS_PREFIX)-ld
 LDFLAGS = -nostdlib -Wl,-dll -shared -Wl,--subsystem,10 -e efi_main
 
-OBJS_NOARCH = $(patsubst %.c,%.o,$(shell find lib -path lib/arch/ -prune -o -type f -name '*.c'))
+OBJS_NOARCH = $(patsubst %.c,%.o,$(shell find lib -path lib/arch -prune -o -name '*.c' -type f -print))
 OBJS_ARCH = $(patsubst %.c,%.o,$(shell find lib/arch/$(ARCH) -type f -name '*.c'))
 AOBJS = $(patsubst %.S,%.obj,$(shell find lib/arch/$(ARCH) -type f -name '*.S'))
 
@@ -25,6 +25,8 @@ build: BOOTX64.EFI
 
 
 BOOTX64.EFI: bootx64.o $(OBJS_NOARCH) $(OBJS_ARCH) $(AOBJS) include/*
+	@echo $(OBJS_NOARCH)
+	@echo $(OBJS_ARCH)
 	$(CC) $(LDFLAGS) bootx64.o $(OBJS_NOARCH) $(OBJS_ARCH) $(AOBJS) -o BOOTX64.EFI
 
 %.obj: %.S
