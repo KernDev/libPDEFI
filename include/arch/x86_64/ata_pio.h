@@ -39,25 +39,19 @@ enum {
 
 // Status byte bits.
 
-enum {
-	ATA_SB_ERR,
-	ATA_SB_DRQ = 3,
-	ATA_SB_SRV,
-	ATA_SB_DF,
-	ATA_SB_RDY,
-	ATA_SB_BSY
-};
+#define ATA_SB_ERR 1
+#define ATA_SB_DRQ (1 << 3)
+#define ATA_SB_SRV (1 << 4)
+#define ATA_SB_DF  (1 << 5)
+#define ATA_SB_RDY (1 << 6)
+#define ATA_SB_BSY (1 << 7)
 
 
 // Device control / alternate status bits.
 
-enum {
-	ATA_DCR_NO_INT = 1,
-	ATA_DCR_SW_RESET = 2,
-	ATA_DCR_HOB = 7
-};
-
-#define ATA_DCR_SW_RESET_BYTE (1 << ATA_DCR_SW_RESET)
+#define ATA_DCR_NO_INT 2
+#define ATA_DCR_SW_RESET (1 << 2)
+#define ATA_DCR_HOB (1 << 7)
 
 
 void ata_sw_reset();

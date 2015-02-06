@@ -16,6 +16,7 @@
 #include <timer.h>
 #include <hexdump.h>
 #include <graphics.h>
+#include <gpt.h>
 
 #ifdef ARCH_X86_64
 #include <port.h>
@@ -38,6 +39,16 @@ efi_status_t efi_main(void *img_handle, efi_systab_t *systab)
 	welcome();
 
 	// Insert your test code here.
+
+	ata_sw_reset();
+
+	gpt_header_t *gpt_hdr = ata_pio_read(1, 1, true, true);
+	gpt_ent_t *pt = ata_pio_read(gpt_hdr->pt_lba, 1, true, true);
+	puts(L"First partition offset: 0x");
+	puts(ulltowcs(pt->st_lba, 0x10));
+	puts(L"\n\r");
+
+	puts(L"Finish.");
 
 	halt();
 

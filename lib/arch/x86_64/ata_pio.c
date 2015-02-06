@@ -6,7 +6,7 @@
 
 void ata_sw_reset()
 {
-	outb(ATA_DEVICE_CONTROL_PORT, ATA_DCR_SW_RESET_BYTE);	// Reset.
+	outb(ATA_DEVICE_CONTROL_PORT, ATA_DCR_SW_RESET);	// Reset.
 	outb(ATA_DEVICE_CONTROL_PORT, 0);			// Reset back to the normal operation mode.
 
 	// 400ns delay.
@@ -54,13 +54,12 @@ void *ata_pio_read(uint64_t lba, uint16_t sect_cnt, bool primary, bool master)
 	while (sect_cnt--)
 	{
 		uint8_t byte;
-		while ((byte = inb(port_base + ATA_COMMAND_STATUS)) & ATA_SB_BSY);
+		while (inb(port_base + ATA_COMMAND_STATUS) & ATA_SB_BSY);
 		if (byte & (ATA_SB_ERR | ATA_SB_DF))
 			return 0;
 
 		register uint64_t rdi asm("rdi") = (uint64_t) buffer_p;
 		register uint64_t rcx asm("rcx") = 256;
-		//asm("mov rcx, 256");
 		register uint16_t rdx asm("rdx") = port_base + ATA_DATA;
 		asm("rep insw");
 
