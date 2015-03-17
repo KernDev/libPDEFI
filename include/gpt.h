@@ -29,7 +29,7 @@ typedef struct {
 	uint32_t pt_ent_n;
 	uint32_t pt_ent_sz;
 	uint32_t pt_crc32;
-} __attribute__((__packed__)) gpt_header_t;
+} __attribute__((__packed__)) gpt_hdr_t;
 
 
 typedef struct {

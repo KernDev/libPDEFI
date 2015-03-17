@@ -15,7 +15,7 @@ void ata_sw_reset()
 	inb(ATA_DEVICE_CONTROL_PORT);
 	inb(ATA_DEVICE_CONTROL_PORT);
 
-	//while (!(inb(ATA_DEVICE_CONTROL_PORT) & ATA_SB_RDY)); // Wait for BSY and RDY.
+	while (!(inb(ATA_DEVICE_CONTROL_PORT) & ATA_SB_RDY)); // Wait for BSY and RDY.
 }
 
 

@@ -33,6 +33,8 @@ typedef struct {
 	native_int_t mmap_ent_sz;
 
 	uint32_t video_mode;
+	void *fb_base;
+	size_t fb_size;
 	uint32_t res_horitzontal;
 	uint32_t res_vertical;
 	pix_order_t pix_order;

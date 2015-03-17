@@ -11,7 +11,7 @@ YASM = yasm
 YASMFLAGS = -f win64
 
 #LD = $(CROSS_PREFIX)-ld
-LDFLAGS = -nostdlib -Wl,-dll -shared -Wl,--subsystem,10 -e efi_main
+LDFLAGS = -nostdlib -Wl,-dll -shared -Wl,--subsystem,10
 
 OBJS_NOARCH = $(patsubst %.c,%.o,$(shell find lib -path lib/arch -prune -o -name '*.c' -type f -print))
 OBJS_ARCH = $(patsubst %.c,%.o,$(shell find lib/arch/$(ARCH) -type f -name '*.c'))
@@ -25,9 +25,10 @@ build: BOOTX64.EFI
 
 
 BOOTX64.EFI: bootx64.o $(OBJS_NOARCH) $(OBJS_ARCH) $(AOBJS) include/*
-	@echo $(OBJS_NOARCH)
-	@echo $(OBJS_ARCH)
-	$(CC) $(LDFLAGS) bootx64.o $(OBJS_NOARCH) $(OBJS_ARCH) $(AOBJS) -o BOOTX64.EFI
+	$(CC) $(LDFLAGS) -e efi_main bootx64.o $(OBJS_NOARCH) $(OBJS_ARCH) $(AOBJS) -o BOOTX64.EFI
+
+lib/libPDEFI.a: $(OBJS_NOARCH) $(OBJS_ARCH) $(AOBJS) include/*
+	ar cr lib/libPDEFI.a $(OBJS_NOARCH) $(OBJS_ARCH) $(AOBJS)
 
 %.obj: %.S
 	$(YASM) $(YASMFLAGS) $(patsubst %.obj,%.S,$@) -o $@

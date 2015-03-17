@@ -39,7 +39,6 @@ typedef struct {
 
 
 typedef struct {
-	efi_dev_path_proto_t header;
 	uint32_t media_id;
 	bool rem_media;
 	bool media_pres;
@@ -54,7 +53,7 @@ typedef struct {
 
 typedef struct {
 	uint64_t rev;
-	efi_blk_io_media_t media;
+	efi_blk_io_media_t *media;
 	efi_status_t (*reset)(void*, bool);
 	efi_status_t (*read_blk)(void*, uint32_t, uint64_t, native_int_t, void*);
 	efi_status_t (*write_blk)(void*, uint32_t, uint64_t, native_int_t, void*);
