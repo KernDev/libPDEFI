@@ -25,6 +25,11 @@
 
 
 typedef struct {
+    efi_guid_t vendor_guid;
+    void *table;
+} efi_cfgtab_t;
+
+typedef struct {
 	efi_tab_hdr_t header;
 	char16_t *vendor;
 	uint32_t revision;
@@ -40,6 +45,9 @@ typedef struct {
 
 	efi_rtsrv_t *rtsrv;
 	efi_bsrv_t *bsrv;
+    
+    native_int_t cfg_n;
+    efi_cfgtab_t *cfgtab;
 } efi_systab_t;
 
 

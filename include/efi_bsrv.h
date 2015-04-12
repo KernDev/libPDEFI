@@ -3,6 +3,7 @@
 
 
 #include <stdint.h>
+#include <stdbool.h>
 #include <wchar.h>
 #include <efi_mem.h>
 #include <efi_event.h>
@@ -102,7 +103,7 @@ typedef struct {
 
 	efi_status_t (*exit)(void*, efi_status_t, native_int_t, char16_t*);
 
-	void *unknown_unload_img; // TODO: add unload_img here.
+	efi_status_t (*unload_img)(void*);
 
 	efi_status_t (*exit_bsrv)(void*, native_int_t);
 
@@ -112,17 +113,26 @@ typedef struct {
 
 	efi_status_t (*set_watchdog_timer)(native_int_t, uint64_t, native_int_t, char16_t*);
 
-	// TODO: find information about these functions.
-	void *unknown_connect_controller;
-	void *unknown_disconnect_controller;
+	efi_status_t (*connect_controller)(void*, void**, efi_dev_path_proto_t*, bool);
+	efi_status_t (*disconnect_controller)(void*, void*, void*);
 
 	efi_status_t (*open_proto)(void*, efi_guid_t*, void**, void*, void*, uint32_t);
 	efi_status_t (*close_proto)(void*, efi_guid_t*, void*, void*);
 	efi_status_t (*open_proto_info)(void*, efi_guid_t*, efi_proto_info_ent_t**, native_int_t*);
-	void *unknown_proto_per_handle;
+	efi_status_t (*proto_per_handle)(void*, efi_guid_t***, native_int_t*);
 
-	void *unknown_locate_handle_buffer;
+    efi_status_t (*locate_handle_buffer)(native_int_t, efi_guid_t*, void*, native_int_t*, void***);
 	efi_status_t (*locate_proto)(efi_guid_t*, void*, void**);
+
+	efi_status_t (*install_multiple_proto_interfaces)(void**, ...);
+	efi_status_t (*uninstall_multiple_proto_interfaces)(void*, ...);
+    
+    efi_status_t (*calc_crc32)(void*, native_int_t, uint32_t*);
+    
+    void (*copy_mem)(void*, void*, native_int_t);
+    void (*set_mem)(void*, native_int_t, uint8_t);
+    
+    efi_status_t (*create_evt_ex)(uint32_t, efi_tpl_t, efi_evt_notify_t, void*, const efi_guid_t*, void**);
 } efi_bsrv_t;
 
 

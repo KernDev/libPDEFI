@@ -18,7 +18,7 @@ typedef uint32_t cmd_status_t;
 
 typedef struct {
 	char16_t *name;
-	cmd_status_t (*cb)();
+	cmd_status_t (*cb)(void);
 } cmd_t;
 
 

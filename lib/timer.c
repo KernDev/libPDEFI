@@ -33,7 +33,7 @@ timer_t *set_interval(uint64_t ns100, void (*cb)(void*, void*), void *ctx)
 
 void clear_timer(timer_t *timer)
 {
-	efi_systab->bsrv->set_timer(timer, TIMER_CANCEL, 0);
+	efi_systab->bsrv->set_timer(*timer, TIMER_CANCEL, 0);
 	efi_systab->bsrv->close_evt(timer);
 }
 
