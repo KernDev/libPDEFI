@@ -8,9 +8,7 @@ Our goal is to save EFI developer's time by implementing some useful functions i
 The library is in active development.
 
 # Roadmap
-- Text output [done].
-- Keyboard input [done].
-- Disk I/O [wip].
+- Disk I/O - x86 ATA PIO, need help with EFI interfaces.
 
 # Compilation instructions
 Just 'make' it.
